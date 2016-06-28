@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redux!</title>
+  <style>
+    .container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #EEE;
+    }
+
+    .container:target #slide1 { transform: scale(0.5) translate(-50%, -50%); }
+    .container:target #slide2 { transform: scale(0.5) translate(50%, -50%); }
+    .container:target #slide3 { transform: scale(0.5) translate(-50%, 50%); }
+    .container:target #slide4 { transform: scale(0.5) translate(50%, 50%); }
+
+    .self-link {
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: orange;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .self-link:hover {
+      opacity: 0.1;
+    }
+
+    .container:target .self-link {
+      display: block;
+    }
+
+    .slide {
+      position: absolute;
+      border: 1px solid red;
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      text-align: center;
+      transition: transform 0.8s;
+      transform: translate(-100%, 0);
+    }
+
+    .slide:target {
+      transform: translate(0, 0);
+    }
+
+    .slide:target ~ .slide {
+      transform: translate(100%, 0);
+    }
+
+    .zoom-link {
+      position: absolute;
+      right: 40px;
+      bottom: 40px;
+      width: 40px;
+      height: 40px;
+      background: orange;
+      transition: opacity 0.8s;
+    }
+
+    .container:target .zoom-link {
+      pointer-events: none;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="zoom-out">
+    <div class="slide" id="slide1">
+      <h2>Slide 1</h2>
+      <p>Paragraph one</p>
+      <p><a href="#slide2">Next</a></p>
+      <a class="self-link" href="#slide1"></a>
+    </div>
+    <div class="slide" id="slide2">
+      <h2>Slide 2</h2>
+      <p>Paragraph one lorum ipsum</p>
+      <p>Paragraph two</p>
+      <p><a href="#slide1">Prev</a></p>
+      <p><a href="#slide3">Next</a></p>
+      <a class="self-link" href="#slide2"></a>
+    </div>
+    <div class="slide" id="slide3">
+      <h2>Slide 3</h2>
+      <p>Paragraph one</p>
+      <p>Paragraph two</p>
+      <p><a href="#slide2">Prev</a></p>
+      <p><a href="#slide4">Next</a></p>
+      <a class="self-link" href="#slide3"></a>
+    </div>
+    <div class="slide" id="slide4">
+      <h2>Slide 4</h2>
+      <p>Paragraph one</p>
+      <p>Paragraph two</p>
+      <p><a href="#slide3">Prev</a></p>
+      <a class="self-link" href="#slide4"></a>
+    </div>
+    <a class="zoom-link" href="#zoom-out"></a>
+  </div>
+  
+</body>
+</html>
